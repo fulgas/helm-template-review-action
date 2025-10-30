@@ -1,0 +1,24 @@
+name: 'Helm Template Review Action'
+description: 'Renders a Helm chart template, parses resources, and posts a rich PR comment.'
+author: 'Nelson Silva'
+
+inputs:
+  chart-path:
+    description: 'Path to the Helm chart to render.'
+    required: true
+    default: '.'
+  github-token:
+    description: 'GitHub token (e.g., ${{ github.token }}) for posting comments.'
+    required: true
+  comment-identifier:
+    description: 'Unique identifier used to find and update the PR comment.'
+    required: false
+    default: 'helm-template-review'
+  helm-args:
+    description: 'Optional extra arguments to pass to `helm template` (e.g., --values values.yaml).'
+    required: false
+    default: ''
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
